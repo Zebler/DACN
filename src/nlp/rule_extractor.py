@@ -1,8 +1,20 @@
 import re
-from .patterns import (
-    TIME_PATTERNS, LOCATION_PATTERNS, EVENT_PATTERNS,
-    REMINDER_PATTERNS, WEEKDAY_MAP, PERIOD_HOUR_MAP
-)
+import sys
+import os
+
+# Fix import path
+try:
+    from .patterns import (
+        TIME_PATTERNS, LOCATION_PATTERNS, EVENT_PATTERNS,
+        REMINDER_PATTERNS, WEEKDAY_MAP, PERIOD_HOUR_MAP
+    )
+except ImportError:
+    # Nếu chạy trực tiếp file này
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+    from src.nlp.patterns import (
+        TIME_PATTERNS, LOCATION_PATTERNS, EVENT_PATTERNS,
+        REMINDER_PATTERNS, WEEKDAY_MAP, PERIOD_HOUR_MAP
+    )
 
 
 class RuleExtractor:
@@ -16,7 +28,7 @@ class RuleExtractor:
     
     def extract_event(self, text):
         """
-        Trích xuất tên sự kiện
+        Trích xuất tên sự kiện (IMPROVED)
         
         Args:
             text (str): Văn bản đầu vào
@@ -28,20 +40,44 @@ class RuleExtractor:
         action_pattern = self.event_patterns['action_verb']
         object_pattern = self.event_patterns['object']
         
-        action_match = re.search(action_pattern, text)
-        object_match = re.search(object_pattern, text)
+        action_match = re.search(action_pattern, text, re.IGNORECASE)
+        object_match = re.search(object_pattern, text, re.IGNORECASE)
         
+        # Strategy 1: Có cả action và object
         if action_match and object_match:
-            return f"{action_match.group()} {object_match.group()}"
+            # Lấy cả context xung quanh
+            start = min(action_match.start(), object_match.start())
+            end = max(action_match.end(), object_match.end())
+            event_context = text[start:end]
+            return event_context.strip()
+        
+        # Strategy 2: Chỉ có action
         elif action_match:
-            return action_match.group()
+            # Lấy 3-5 từ sau action
+            start = action_match.start()
+            end = min(action_match.end() + 30, len(text))
+            event_context = text[start:end]
+            # Cắt ở dấu phẩy hoặc "tại", "ở"
+            for marker in [',', ' tại ', ' ở ', ' lúc ', ' vào ']:
+                if marker in event_context:
+                    event_context = event_context.split(marker)[0]
+                    break
+            return event_context.strip()
+        
+        # Strategy 3: Không có pattern -> lấy phần đầu câu
         else:
-            # Fallback: lấy toàn bộ text như event
-            return text
+            # Lấy 5-7 từ đầu tiên (trước dấu phẩy hoặc marker)
+            words = text.split()
+            event_words = []
+            for word in words[:7]:
+                if word in [',', 'tại', 'ở', 'lúc', 'vào']:
+                    break
+                event_words.append(word)
+            return ' '.join(event_words) if event_words else text[:50]
     
     def extract_time_components(self, text):
         """
-        Trích xuất các thành phần thời gian
+        Trích xuất các thành phần thời gian (IMPROVED)
         
         Returns:
             dict: {
@@ -63,18 +99,33 @@ class RuleExtractor:
             'raw_matches': []
         }
         
-        # Extract hour:minute
+        # Extract hour:minute - TRY ALL PATTERNS
         for pattern in self.time_patterns['hour_minute']:
             match = re.search(pattern, text)
             if match:
                 groups = match.groups()
                 result['raw_matches'].append(match.group())
                 
-                if len(groups) >= 1:
-                    result['hour'] = int(groups[0])
+                # Parse based on pattern
+                if len(groups) >= 1 and groups[0]:
+                    try:
+                        result['hour'] = int(groups[0])
+                    except (ValueError, TypeError):
+                        pass
+                
                 if len(groups) >= 2 and groups[1]:
-                    result['minute'] = int(groups[1])
-                break
+                    try:
+                        result['minute'] = int(groups[1])
+                    except (ValueError, TypeError):
+                        result['minute'] = 0
+                
+                # If found, break
+                if result['hour'] is not None:
+                    break
+        
+        # Special case: "giờ rưỡi" -> :30
+        if 'rưỡi' in text and result['hour'] is not None:
+            result['minute'] = 30
         
         # Extract period (sáng/chiều/tối)
         period_match = re.search(self.time_patterns['period'], text)

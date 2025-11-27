@@ -12,6 +12,11 @@ class Preprocessor:
             'g': 'giờ',
             'phút': 'phút',
             'ph': 'phút',
+            'p': 'phút',
+            'min': 'phút',
+            'mins': 'phút',
+            'rưỡi': 'rưỡi',
+            'kém': 'kém',
         }
         
         self.day_normalize = {
@@ -22,6 +27,25 @@ class Preprocessor:
             't6': 'thứ sáu',
             't7': 'thứ bảy',
             'cn': 'chủ nhật',
+            'thu 2': 'thứ hai',
+            'thu 3': 'thứ ba',
+            'thu 4': 'thứ tư',
+            'thu 5': 'thứ năm',
+            'thu 6': 'thứ sáu',
+            'thu 7': 'thứ bảy',
+        }
+        
+        # Chuẩn hóa các từ viết tắt địa điểm
+        self.location_normalize = {
+            'vp': 'văn phòng',
+            'p.': 'phòng',
+            'p': 'phòng',
+        }
+        
+        # Chuẩn hóa sự kiện
+        self.event_normalize = {
+            'mtg': 'meeting',
+            'meet': 'meeting',
         }
     
     def clean_text(self, text):
@@ -115,6 +139,7 @@ class Preprocessor:
             'normalized': normalized,
             'tokens': tokens
         }
+
 
 # Test code
 if __name__ == "__main__":

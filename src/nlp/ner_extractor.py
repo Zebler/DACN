@@ -41,8 +41,19 @@ class NERExtractor:
             location_entities = []
             all_entities = []
             
-            # Phân loại entities
-            for word, tag in entities:
+            # Phân loại entities - xử lý cả tuple và list format
+            for item in entities:
+                # underthesea có thể trả về (word, tag) hoặc [word, tag] hoặc (word, pos, tag)
+                if isinstance(item, (tuple, list)):
+                    if len(item) == 2:
+                        word, tag = item
+                    elif len(item) >= 3:
+                        word, _, tag = item[0], item[1], item[2]
+                    else:
+                        continue
+                else:
+                    continue
+                
                 entity_info = {
                     'word': word,
                     'tag': tag
@@ -50,11 +61,11 @@ class NERExtractor:
                 all_entities.append(entity_info)
                 
                 # Lọc TIME entities
-                if 'TIME' in tag or tag == 'B-TIME' or tag == 'I-TIME':
+                if tag and ('TIME' in str(tag) or tag == 'B-TIME' or tag == 'I-TIME'):
                     time_entities.append(word)
                 
                 # Lọc LOCATION entities
-                if 'LOC' in tag or tag == 'B-LOC' or tag == 'I-LOC':
+                if tag and ('LOC' in str(tag) or tag == 'B-LOC' or tag == 'I-LOC'):
                     location_entities.append(word)
             
             return {
@@ -164,6 +175,7 @@ class NERExtractor:
             'location': all_location,
             'ner_result': ner_result['all_entities']
         }
+
 
 # Test code
 if __name__ == "__main__":

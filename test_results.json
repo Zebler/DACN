@@ -1,0 +1,66 @@
+[
+  {
+    "input": "Họp nhóm 10 giờ sáng mai ở phòng 302, nhắc trước 15 phút",
+    "output": null,
+    "success": false,
+    "errors": [
+      "Start time không được để trống"
+    ]
+  },
+  {
+    "input": "Meeting khách hàng 14:30 chiều nay tại tầng 5 tòa A",
+    "output": {
+      "event": "meeting khách hàng",
+      "start_time": "2025-11-27T14:30:00",
+      "end_time": null,
+      "location": "tầng 5, tòa a",
+      "reminder_minutes": 15
+    },
+    "success": true,
+    "errors": []
+  },
+  {
+    "input": "Gặp team 9h thứ 2 tuần sau văn phòng B",
+    "output": null,
+    "success": false,
+    "errors": [
+      "Start time không được để trống"
+    ]
+  },
+  {
+    "input": "Họp 10:00 sáng 01/12/2025 hội trường",
+    "output": {
+      "event": "họp",
+      "start_time": "2025-12-01T10:00:00",
+      "end_time": null,
+      "location": "",
+      "reminder_minutes": 15
+    },
+    "success": true,
+    "errors": []
+  },
+  {
+    "input": "Training chiều mai",
+    "output": null,
+    "success": false,
+    "errors": [
+      "Start time không được để trống"
+    ]
+  },
+  {
+    "input": "Seminar 9 giờ sáng thứ 6 phòng 101",
+    "output": null,
+    "success": false,
+    "errors": [
+      "Start time không được để trống"
+    ]
+  },
+  {
+    "input": "Họp sếp 15h tòa B tầng 10",
+    "output": null,
+    "success": false,
+    "errors": [
+      "Start time không được để trống"
+    ]
+  }
+]

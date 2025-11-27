@@ -1,12 +1,16 @@
 import threading
 import time
 from datetime import datetime, timedelta
+
+# Safe import plyer
+HAS_PLYER = False
 try:
     from plyer import notification
     HAS_PLYER = True
-except ImportError:
-    HAS_PLYER = False
-    print("Warning: plyer not installed. Notifications will be printed to console.")
+    print("✅ Plyer loaded successfully")
+except Exception as e:
+    print(f"⚠️ Warning: plyer not available - {e}")
+    print("   Notifications will be printed to console instead.")
 
 
 class ReminderService:
@@ -74,10 +78,10 @@ class ReminderService:
                             print(f"🔔 Notified: {schedule['event']}")
                     
                     except Exception as e:
-                        print(f"Lỗi xử lý schedule {schedule_id}: {e}")
+                        print(f"⚠️ Lỗi xử lý schedule {schedule_id}: {e}")
             
             except Exception as e:
-                print(f"Lỗi reminder loop: {e}")
+                print(f"⚠️ Lỗi reminder loop: {e}")
             
             # Check mỗi 60 giây
             time.sleep(60)
@@ -100,14 +104,20 @@ class ReminderService:
                 )
                 print(f"✅ Notification shown: {title}")
             except Exception as e:
-                print(f"❌ Lỗi notification: {e}")
-                print(f"📢 {title}\n{message}")
+                print(f"❌ Lỗi show notification: {e}")
+                # Fallback to console
+                self._console_notification(title, message)
         else:
-            # Fallback: print to console
-            print("\n" + "="*50)
-            print(f"📢 {title}")
-            print(message)
-            print("="*50 + "\n")
+            # Print to console if plyer not available
+            self._console_notification(title, message)
+    
+    def _console_notification(self, title, message):
+        """Hiển thị notification trên console"""
+        print("\n" + "="*60)
+        print(f"🔔 {title}")
+        print("-"*60)
+        print(message)
+        print("="*60 + "\n")
     
     def format_time(self, dt_str):
         """Format datetime"""
@@ -116,3 +126,20 @@ class ReminderService:
             return dt.strftime("%d/%m/%Y %H:%M")
         except:
             return dt_str
+
+
+# Test
+if __name__ == "__main__":
+    print(f"Plyer available: {HAS_PLYER}")
+    
+    if HAS_PLYER:
+        try:
+            notification.notify(
+                title="Test Notification",
+                message="This is a test",
+                app_name="Test",
+                timeout=5
+            )
+            print("✅ Test notification sent!")
+        except Exception as e:
+            print(f"❌ Test failed: {e}")

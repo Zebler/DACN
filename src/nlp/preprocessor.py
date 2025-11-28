@@ -82,9 +82,10 @@ class Preprocessor:
         Returns:
             str: Văn bản đã chuẩn hóa
         """
-        # Chuẩn hóa thời gian
-        for abbr, full in self.time_normalize.items():
-            text = re.sub(r'\b' + abbr + r'\b', full, text)
+        # IMPORTANT: Bảo vệ "phòng" khỏi bị chuẩn hóa thành "p"
+        # Chuẩn hóa thời gian (CHỈ khi đứng riêng hoặc có số đằng sau)
+        text = re.sub(r'\b(\d+)\s*h\b', r'\1 giờ', text)  # 10h -> 10 giờ
+        text = re.sub(r'\b(\d+)\s*g\b', r'\1 giờ', text)  # 10g -> 10 giờ
         
         # Chuẩn hóa ngày trong tuần
         for abbr, full in self.day_normalize.items():

@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from datetime import datetime
 
 
@@ -90,7 +91,25 @@ class JSONStorage:
             if keyword in s.get('event', '').lower() or
                keyword in s.get('location', '').lower()
         ]
-
+    def ensure_file_exists(self):
+        """Đảm bảo file tồn tại"""
+        # Get app data directory
+        if getattr(sys, 'frozen', False):
+            # Running as exe - use app directory
+            app_dir = os.path.dirname(sys.executable)
+        else:
+            # Running as script
+            app_dir = os.path.dirname(os.path.abspath(__file__))
+        
+        # Create data folder next to exe
+        data_dir = os.path.join(app_dir, 'data')
+        os.makedirs(data_dir, exist_ok=True)
+        
+        self.file_path = os.path.join(data_dir, 'schedules.json')
+        
+        if not os.path.exists(self.file_path):
+            with open(self.file_path, 'w', encoding='utf-8') as f:
+                json.dump([], f, ensure_ascii=False, indent=2)
 
 # Test
 if __name__ == "__main__":

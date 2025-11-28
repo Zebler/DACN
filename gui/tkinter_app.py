@@ -5,8 +5,11 @@ import os
 import json
 from datetime import datetime
 
-# Add project to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+if getattr(sys, 'frozen', False):
+    application_path = sys._MEIPASS
+    sys.path.insert(0, application_path)
+else:
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.core.scheduler import PersonalScheduleAssistant
 from src.storage.json_storage import JSONStorage

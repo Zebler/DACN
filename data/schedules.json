@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "event": "họp nhóm",
+    "start_time": "2025-11-29T10:00:00",
+    "end_time": null,
+    "location": "phòng 102",
+    "reminder_minutes": 15,
+    "id": "1",
+    "created_at": "2025-11-28T14:30:46.663748"
+  },
+  {
+    "event": "họp cổ đông",
+    "start_time": "2025-11-29T10:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "2",
+    "created_at": "2025-11-28T14:31:08.466564"
+  },
+  {
+    "event": "họp cổ đông công ty",
+    "start_time": "2025-11-29T10:00:00",
+    "end_time": null,
+    "location": "công ty con",
+    "reminder_minutes": 15,
+    "id": "3",
+    "created_at": "2025-11-28T14:31:31.643250"
+  }
+]

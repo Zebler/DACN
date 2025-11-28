@@ -28,7 +28,7 @@ class RuleExtractor:
     
     def extract_event(self, text):
         """
-        Trích xuất tên sự kiện (IMPROVED)
+        Trích xuất tên sự kiện
         
         Args:
             text (str): Văn bản đầu vào
@@ -77,7 +77,7 @@ class RuleExtractor:
     
     def extract_time_components(self, text):
         """
-        Trích xuất các thành phần thời gian (IMPROVED)
+        Trích xuất các thành phần thời gian
         
         Returns:
             dict: {
@@ -171,34 +171,67 @@ class RuleExtractor:
             'raw_matches': []
         }
         
-        # Extract room
-        room_match = re.search(self.location_patterns['room'], text)
-        if room_match:
-            result['room'] = room_match.group()
-            result['raw_matches'].append(room_match.group())
+        # Extract room - STRICT PATTERNS (chỉ match với số hoặc chữ cái đằng sau)
+        room_patterns = [
+            r'phòng\s+(\d+)',              # phòng 302, phòng 101
+            r'phòng\s+([A-Z]\d*)',         # phòng A, phòng B1
+            r'phòng\s+họp',                # phòng họp
+            r'p\.\s*(\d+)',                # p.302
+            r'\broom\s+(\d+)',             # room 302
+        ]
+        for pattern in room_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                result['room'] = match.group()
+                result['raw_matches'].append(match.group())
+                break
         
-        # Extract floor
-        floor_match = re.search(self.location_patterns['floor'], text)
-        if floor_match:
-            result['floor'] = floor_match.group()
-            result['raw_matches'].append(floor_match.group())
+        # Extract floor - STRICT
+        floor_patterns = [
+            r'tầng\s+(\d+)',               # tầng 5
+            r'lầu\s+(\d+)',                # lầu 2
+            r'floor\s+(\d+)',              # floor 5
+        ]
+        for pattern in floor_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                result['floor'] = match.group()
+                result['raw_matches'].append(match.group())
+                break
         
-        # Extract building
-        building_match = re.search(self.location_patterns['building'], text)
-        if building_match:
-            result['building'] = building_match.group()
-            result['raw_matches'].append(building_match.group())
+        # Extract building - STRICT
+        building_patterns = [
+            r'tòa\s+([A-Z]\d*)',           # tòa A, tòa B
+            r'toà\s+([A-Z]\d*)',           # toà A
+            r'tòa nhà\s+([A-Z]\d*)',       # tòa nhà A
+            r'building\s+([A-Z]\d*)',      # building A
+        ]
+        for pattern in building_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                result['building'] = match.group()
+                result['raw_matches'].append(match.group())
+                break
         
-        # Extract office
-        office_match = re.search(self.location_patterns['office'], text)
-        if office_match:
-            result['office'] = office_match.group()
-            result['raw_matches'].append(office_match.group())
+        # Extract office - STRICT
+        office_patterns = [
+            r'văn\s*phòng\s+([A-Z]\d*)',   # văn phòng A
+            r'vp\s+([A-Z]\d*)',            # vp A
+        ]
+        for pattern in office_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                result['office'] = match.group()
+                result['raw_matches'].append(match.group())
+                break
         
         # Combine full location
-        location_parts = [v for v in [result['room'], result['floor'], 
-                                      result['building'], result['office']] if v]
-        result['full_location'] = ', '.join(location_parts)
+        location_parts = []
+        for key in ['room', 'floor', 'building', 'office']:
+            if result[key]:
+                location_parts.append(result[key])
+        
+        result['full_location'] = ', '.join(location_parts) if location_parts else ''
         
         return result
     

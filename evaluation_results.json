@@ -1,6 +1,6 @@
 {
   "accuracy": 96.66666666666667,
-  "avg_confidence": 74.5,
+  "avg_confidence": 68.0,
   "results": [
     {
       "id": 1,
@@ -10,9 +10,9 @@
       "quality": "excellent",
       "output": {
         "event": "họp nhóm",
-        "start_time": "2025-11-28T10:00:00",
+        "start_time": "2025-11-29T10:00:00",
         "end_time": null,
-        "location": "p nhóm",
+        "location": "phòng 302",
         "reminder_minutes": 15
       }
     },
@@ -24,7 +24,7 @@
       "quality": "excellent",
       "output": {
         "event": "meeting khách hàng",
-        "start_time": "2025-11-27T14:30:00",
+        "start_time": "2025-11-29T14:30:00",
         "end_time": null,
         "location": "tầng 5",
         "reminder_minutes": 15
@@ -34,13 +34,13 @@
       "id": 3,
       "input": "Gặp team 9h thứ 2 tuần sau",
       "success": true,
-      "confidence": 90,
-      "quality": "excellent",
+      "confidence": 75,
+      "quality": "good",
       "output": {
         "event": "gặp team",
         "start_time": "2025-12-08T09:00:00",
         "end_time": null,
-        "location": "p team",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -52,7 +52,7 @@
       "quality": "good",
       "output": {
         "event": "training chiều mai phòng 101",
-        "start_time": "2025-11-28T14:00:00",
+        "start_time": "2025-11-29T14:00:00",
         "end_time": null,
         "location": "phòng 101",
         "reminder_minutes": 15
@@ -66,9 +66,9 @@
       "quality": "good",
       "output": {
         "event": "họp sếp",
-        "start_time": "2025-11-27T15:00:00",
+        "start_time": "2025-11-28T15:00:00",
         "end_time": null,
-        "location": "p sếp, tòa b",
+        "location": "tòa b",
         "reminder_minutes": 15
       }
     },
@@ -80,7 +80,7 @@
       "quality": "good",
       "output": {
         "event": "seminar 9 giờ sáng thứ 6",
-        "start_time": "2025-11-28T09:00:00",
+        "start_time": "2025-12-05T09:00:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15
@@ -94,7 +94,7 @@
       "quality": "good",
       "output": {
         "event": "call với client",
-        "start_time": "2025-11-28T10:30:00",
+        "start_time": "2025-11-29T10:30:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15
@@ -107,8 +107,8 @@
       "confidence": 55,
       "quality": "fair",
       "output": {
-        "event": "review code 2h chiều",
-        "start_time": "2025-11-27T14:00:00",
+        "event": "review code 2 giờ chiều",
+        "start_time": "2025-11-29T14:00:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15
@@ -118,13 +118,13 @@
       "id": 9,
       "input": "Họp định kỳ 9h thứ 2 hàng tuần",
       "success": true,
-      "confidence": 90,
-      "quality": "excellent",
+      "confidence": 75,
+      "quality": "good",
       "output": {
-        "event": "họp định kỳ 9h thứ 2 hàng tuần",
+        "event": "họp định kỳ 9 giờ thứ 2 hàng tuần",
         "start_time": "2025-12-01T09:00:00",
         "end_time": null,
-        "location": "p định",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -132,13 +132,13 @@
       "id": 10,
       "input": "Phỏng vấn ứng viên 3h chiều mai",
       "success": true,
-      "confidence": 90,
-      "quality": "excellent",
+      "confidence": 75,
+      "quality": "good",
       "output": {
-        "event": "phỏng vấn ứng viên 3h chiều mai",
-        "start_time": "2025-11-28T15:00:00",
+        "event": "phỏng vấn ứng viên 3 giờ chiều mai",
+        "start_time": "2025-11-29T15:00:00",
         "end_time": null,
-        "location": "phỏng",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -146,13 +146,13 @@
       "id": 11,
       "input": "Họp 10h30 sáng 01/12/2025",
       "success": true,
-      "confidence": 100,
+      "confidence": 85,
       "quality": "excellent",
       "output": {
         "event": "họp 10h30 sáng 01/12/2025",
         "start_time": "2025-12-01T10:30:00",
         "end_time": null,
-        "location": "p 10h30",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -164,9 +164,9 @@
       "quality": "good",
       "output": {
         "event": "gặp đối tác",
-        "start_time": "2025-11-27T14:00:00",
+        "start_time": "2025-11-29T14:00:00",
         "end_time": null,
-        "location": "p đối, tầng 3, tòa a",
+        "location": "tầng 3, tòa a",
         "reminder_minutes": 15
       }
     },
@@ -174,13 +174,13 @@
       "id": 13,
       "input": "Workshop sáng thứ 7",
       "success": true,
-      "confidence": 60,
-      "quality": "good",
+      "confidence": 45,
+      "quality": "fair",
       "output": {
         "event": "workshop sáng thứ 7",
         "start_time": "2025-11-29T09:00:00",
         "end_time": null,
-        "location": "p sáng",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -192,7 +192,7 @@
       "quality": "fair",
       "output": {
         "event": "học tiếng anh",
-        "start_time": "2025-11-28T07:00:00",
+        "start_time": "2025-11-29T07:00:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15
@@ -202,13 +202,13 @@
       "id": 15,
       "input": "Họp team chiều thứ 4",
       "success": true,
-      "confidence": 60,
-      "quality": "good",
+      "confidence": 45,
+      "quality": "fair",
       "output": {
         "event": "họp team",
         "start_time": "2025-12-03T14:00:00",
         "end_time": null,
-        "location": "p team",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -220,9 +220,9 @@
       "quality": "excellent",
       "output": {
         "event": "meeting 9:30 phòng họp lớn",
-        "start_time": "2025-11-28T09:30:00",
+        "start_time": "2025-11-29T09:30:00",
         "end_time": null,
-        "location": "phòng họp",
+        "location": "phòng h",
         "reminder_minutes": 15
       }
     },
@@ -233,8 +233,8 @@
       "confidence": 75,
       "quality": "good",
       "output": {
-        "event": "thảo luận dự án 2h chiều mai",
-        "start_time": "2025-11-28T14:00:00",
+        "event": "thảo luận dự án 2 giờ chiều mai",
+        "start_time": "2025-11-29T14:00:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15
@@ -244,13 +244,13 @@
       "id": 18,
       "input": "Báo cáo sếp 4h chiều hôm nay",
       "success": true,
-      "confidence": 90,
-      "quality": "excellent",
+      "confidence": 75,
+      "quality": "good",
       "output": {
         "event": "báo cáo sếp",
-        "start_time": "2025-11-27T16:00:00",
+        "start_time": "2025-11-28T16:00:00",
         "end_time": null,
-        "location": "p 4h",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -261,8 +261,8 @@
       "confidence": 55,
       "quality": "fair",
       "output": {
-        "event": "training nhân viên mới 9h sáng",
-        "start_time": "2025-11-28T09:00:00",
+        "event": "training nhân viên mới 9 giờ sáng",
+        "start_time": "2025-11-29T09:00:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15
@@ -275,10 +275,10 @@
       "confidence": 70,
       "quality": "good",
       "output": {
-        "event": "gặp khách vip 10h tòa b tầng 10",
-        "start_time": "2025-11-28T10:00:00",
+        "event": "gặp khách vip 10 giờ tòa b tầng 1",
+        "start_time": "2025-11-29T10:00:00",
         "end_time": null,
-        "location": "p khách, tầng 10, tòa b",
+        "location": "tầng 10, tòa b",
         "reminder_minutes": 15
       }
     },
@@ -286,13 +286,13 @@
       "id": 21,
       "input": "Họp quý 3h chiều thứ 6",
       "success": true,
-      "confidence": 90,
-      "quality": "excellent",
+      "confidence": 75,
+      "quality": "good",
       "output": {
-        "event": "họp quý 3h chiều thứ 6",
-        "start_time": "2025-11-28T15:00:00",
+        "event": "họp quý 3 giờ chiều thứ 6",
+        "start_time": "2025-12-05T15:00:00",
         "end_time": null,
-        "location": "p quý",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -300,13 +300,13 @@
       "id": 22,
       "input": "Review performance 9h30 sáng mai",
       "success": true,
-      "confidence": 100,
+      "confidence": 85,
       "quality": "excellent",
       "output": {
         "event": "review performance 9h30 sáng mai",
-        "start_time": "2025-11-28T09:30:00",
+        "start_time": "2025-11-29T09:30:00",
         "end_time": null,
-        "location": "performance",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -314,7 +314,7 @@
       "id": 23,
       "input": "Call zoom 2pm",
       "success": false,
-      "confidence": 30,
+      "confidence": 15,
       "quality": "poor",
       "output": null
     },
@@ -322,13 +322,13 @@
       "id": 24,
       "input": "Họp gấp 15h hôm nay",
       "success": true,
-      "confidence": 90,
-      "quality": "excellent",
+      "confidence": 75,
+      "quality": "good",
       "output": {
-        "event": "họp gấp 15h hôm nay",
-        "start_time": "2025-11-27T15:00:00",
+        "event": "họp gấp 15 giờ hôm nay",
+        "start_time": "2025-11-28T15:00:00",
         "end_time": null,
-        "location": "p gấp",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -339,7 +339,7 @@
       "confidence": 75,
       "quality": "good",
       "output": {
-        "event": "seminar ai 9h thứ 7 tuần sau",
+        "event": "seminar ai 9 giờ thứ 7 tuần sau",
         "start_time": "2025-12-06T09:00:00",
         "end_time": null,
         "location": "",
@@ -350,13 +350,13 @@
       "id": 26,
       "input": "Ăn trưa với đồng nghiệp 12h",
       "success": true,
-      "confidence": 70,
-      "quality": "good",
+      "confidence": 55,
+      "quality": "fair",
       "output": {
-        "event": "ăn trưa với đồng nghiệp 12h",
-        "start_time": "2025-11-28T12:00:00",
+        "event": "ăn trưa với đồng nghiệp 12 giờ",
+        "start_time": "2025-11-29T12:00:00",
         "end_time": null,
-        "location": "p 12h",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -367,7 +367,7 @@
       "confidence": 75,
       "quality": "good",
       "output": {
-        "event": "đánh giá nhân viên 2h chiều thứ 5",
+        "event": "đánh giá nhân viên 2 giờ chiều thứ 5",
         "start_time": "2025-12-04T14:00:00",
         "end_time": null,
         "location": "",
@@ -381,10 +381,10 @@
       "confidence": 70,
       "quality": "good",
       "output": {
-        "event": "presentation 10h phòng 201",
-        "start_time": "2025-11-28T10:00:00",
+        "event": "presentation 10 giờ phòng 201",
+        "start_time": "2025-11-29T10:00:00",
         "end_time": null,
-        "location": "presentation",
+        "location": "phòng 201",
         "reminder_minutes": 15
       }
     },
@@ -392,13 +392,13 @@
       "id": 29,
       "input": "Họp ban giám đốc 8h30 sáng",
       "success": true,
-      "confidence": 80,
-      "quality": "excellent",
+      "confidence": 65,
+      "quality": "good",
       "output": {
         "event": "họp ban giám đốc",
-        "start_time": "2025-11-28T08:30:00",
+        "start_time": "2025-11-29T08:30:00",
         "end_time": null,
-        "location": "p ban",
+        "location": "",
         "reminder_minutes": 15
       }
     },
@@ -409,8 +409,8 @@
       "confidence": 75,
       "quality": "good",
       "output": {
-        "event": "training excel 3h chiều mai",
-        "start_time": "2025-11-28T15:00:00",
+        "event": "training excel 3 giờ chiều mai",
+        "start_time": "2025-11-29T15:00:00",
         "end_time": null,
         "location": "",
         "reminder_minutes": 15

@@ -74,6 +74,35 @@ class ScheduleAssistantGUI:
         self.input_text.pack(fill=tk.X, pady=(5, 10))
         self.input_text.bind('<Return>', lambda e: self.add_schedule())
         
+        reminder_frame = tk.Frame(input_frame)
+        reminder_frame.pack(fill=tk.X, pady=(5, 10))
+        
+        tk.Label(
+            reminder_frame,
+            text="⏰ Nhắc nhở trước:",
+            font=("Arial", 10)
+        ).pack(side=tk.LEFT, padx=(0, 10))
+        
+        # Dropdown cho reminder time
+        self.reminder_var = tk.StringVar(value="15")
+        reminder_options = ["5", "10", "15", "30", "60", "120"]
+        
+        reminder_combo = ttk.Combobox(
+            reminder_frame,
+            textvariable=self.reminder_var,
+            values=reminder_options,
+            width=10,
+            state="readonly",
+            font=("Arial", 10)
+        )
+        reminder_combo.pack(side=tk.LEFT)
+        
+        tk.Label(
+            reminder_frame,
+            text="phút",
+            font=("Arial", 10)
+        ).pack(side=tk.LEFT, padx=(5, 0))        
+
         # Buttons
         button_frame = tk.Frame(input_frame)
         button_frame.pack(fill=tk.X)

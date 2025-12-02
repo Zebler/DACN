@@ -53,8 +53,15 @@ class TimeParser:
         if target_date and hour is not None:
             result = target_date.replace(hour=hour, minute=minute or 0)
             
-            # Nếu thời gian đã qua trong ngày, cộng thêm 1 ngày
-            if result < self.current_time and not time_components.get('date'):
+            # CHỈ tự động +1 ngày khi:
+            # - Thời gian đã qua
+            # - KHÔNG có date cụ thể
+            # - KHÔNG phải "hôm nay" (relative_day != 'hôm nay')
+            relative_day = time_components.get('relative_day', '').lower()
+            has_explicit_date = time_components.get('date') is not None
+            is_today = relative_day in ['hôm nay', 'ngày hôm nay']
+            
+            if result < self.current_time and not has_explicit_date and not is_today:
                 result = result + timedelta(days=1)
             
             return result
@@ -139,7 +146,7 @@ class TimeParser:
     
     def _parse_time(self, time_components):
         """
-        Parse giờ và phút (IMPROVED)
+        Parse giờ và phút (IMPROVED with better AM/PM logic)
         
         Returns:
             tuple: (hour, minute)
@@ -154,11 +161,34 @@ class TimeParser:
         
         # Case 1: Có giờ rõ ràng
         if hour is not None:
-            # Nếu giờ < 12 và có period chiều/tối, cộng 12 (PM conversion)
-            if period in ['chiều', 'buổi chiều', 'tối', 'buổi tối'] and hour < 12 and hour != 0:
-                # Nếu đã là 14h, 15h thì không cộng
-                if hour < 6:  # 2h chiều, 3h chiều
-                    hour += 12
+            # Xử lý AM/PM conversion
+            if period:
+                period_lower = period.lower()
+                
+                # CHIỀU/TỐI: Giờ từ 1-11 -> cộng 12
+                if period_lower in ['chiều', 'buổi chiều', 'tối', 'buổi tối', 'tối muộn']:
+                    if 1 <= hour <= 11:
+                        hour += 12
+                    # 12h chiều = 12h (noon), không đổi
+                    # 13h-23h giữ nguyên
+                
+                # ĐÊM/KHUYA: Giữ nguyên (0-5h) hoặc convert nếu > 12
+                elif period_lower in ['đêm', 'khuya', 'nửa đêm']:
+                    if hour >= 12:
+                        hour = hour - 12  # 12h đêm = 0h
+                    # 0-5h giữ nguyên
+                
+                # SÁNG: Giữ nguyên 0-11h
+                # 12h sáng = 0h (midnight)
+                elif period_lower in ['sáng', 'buổi sáng', 'sáng sớm']:
+                    if hour == 12:
+                        hour = 0
+                    # 1-11h giữ nguyên
+                
+                # TRƯA: 12h hoặc 11-13h
+                elif period_lower in ['trưa', 'buổi trưa']:
+                    # 12h trưa = 12h (noon)
+                    pass
             
             # Validate
             if is_valid_time(hour, minute):

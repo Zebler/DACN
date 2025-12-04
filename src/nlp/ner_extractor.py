@@ -175,26 +175,3 @@ class NERExtractor:
             'location': all_location,
             'ner_result': ner_result['all_entities']
         }
-
-
-# Test code
-if __name__ == "__main__":
-    extractor = NERExtractor()
-    
-    test_cases = [
-        "Họp nhóm 10 giờ sáng mai ở phòng 302",
-        "Meeting 14:30 chiều nay tại tầng 5",
-        "Gặp khách hàng 9h thứ 2 tuần sau ở văn phòng A",
-        "Họp team lúc 10:00 sáng tại hội trường tòa B",
-    ]
-    
-    print("=" * 60)
-    print("TEST COMPONENT 2: NER EXTRACTOR")
-    print("=" * 60)
-    
-    for i, text in enumerate(test_cases, 1):
-        print(f"\n[Test {i}] Input: {text}")
-        result = extractor.extract(text)
-        print(f"TIME:     {result['time']}")
-        print(f"LOCATION: {result['location']}")
-        print(f"NER Tags: {result['ner_result'][:5]}...")  # Hiển thị 5 đầu

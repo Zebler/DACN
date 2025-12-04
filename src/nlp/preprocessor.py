@@ -140,28 +140,3 @@ class Preprocessor:
             'normalized': normalized,
             'tokens': tokens
         }
-
-
-# Test code
-if __name__ == "__main__":
-    preprocessor = Preprocessor()
-    
-    # Test cases
-    test_cases = [
-        "Họp nhóm 10h sáng mai ở phòng 302",
-        "Meeting 14:30 chiều nay",
-        "Gặp khách hàng 9 giờ thứ 2 tuần sau",
-        "Họp   team   lúc  10:00  sáng",
-    ]
-    
-    print("=" * 60)
-    print("TEST COMPONENT 1: PREPROCESSOR")
-    print("=" * 60)
-    
-    for i, text in enumerate(test_cases, 1):
-        print(f"\n[Test {i}]")
-        result = preprocessor.process(text)
-        print(f"Original:   {result['original']}")
-        print(f"Cleaned:    {result['cleaned']}")
-        print(f"Normalized: {result['normalized']}")
-        print(f"Tokens:     {result['tokens']}")

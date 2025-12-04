@@ -126,20 +126,3 @@ class ReminderService:
             return dt.strftime("%d/%m/%Y %H:%M")
         except:
             return dt_str
-
-
-# Test
-if __name__ == "__main__":
-    print(f"Plyer available: {HAS_PLYER}")
-    
-    if HAS_PLYER:
-        try:
-            notification.notify(
-                title="Test Notification",
-                message="This is a test",
-                app_name="Test",
-                timeout=5
-            )
-            print("✅ Test notification sent!")
-        except Exception as e:
-            print(f"❌ Test failed: {e}")

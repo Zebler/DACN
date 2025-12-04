@@ -2,7 +2,7 @@ import re
 import sys
 import os
 
-# Fix import path
+
 try:
     from .patterns import (
         TIME_PATTERNS, LOCATION_PATTERNS, EVENT_PATTERNS,
@@ -273,36 +273,3 @@ class RuleExtractor:
             'location_components': self.extract_location_components(text),
             'reminder_minutes': self.extract_reminder(text)
         }
-
-
-# Test code
-if __name__ == "__main__":
-    extractor = RuleExtractor()
-    
-    test_cases = [
-        "Họp nhóm 10 giờ sáng mai ở phòng 302, nhắc trước 15 phút",
-        "Meeting khách hàng 14:30 chiều nay tại tầng 5 tòa A",
-        "Gặp team 9h thứ 2 tuần sau văn phòng B",
-        "Họp 10:00 sáng 01/12/2025 hội trường",
-    ]
-    
-    print("=" * 60)
-    print("TEST COMPONENT 3: RULE-BASED EXTRACTOR")
-    print("=" * 60)
-    
-    for i, text in enumerate(test_cases, 1):
-        print(f"\n[Test {i}] Input: {text}")
-        result = extractor.extract_all(text)
-        
-        print(f"Event: {result['event']}")
-        print(f"Time Components:")
-        for key, value in result['time_components'].items():
-            if value and key != 'raw_matches':
-                print(f"  - {key}: {value}")
-        
-        print(f"Location Components:")
-        loc = result['location_components']
-        if loc['full_location']:
-            print(f"  - Full: {loc['full_location']}")
-        
-        print(f"Reminder: {result['reminder_minutes']} phút")

@@ -175,36 +175,3 @@ def calculate_reminder_time(start_time, reminder_minutes):
     if start_time is None:
         return None
     return start_time - timedelta(minutes=reminder_minutes)
-
-
-# Test code
-if __name__ == "__main__":
-    print("=" * 60)
-    print("TEST TIME UTILS")
-    print("=" * 60)
-    
-    # Test current time
-    current = get_current_datetime()
-    print(f"\n1. Current time: {format_datetime(current)}")
-    
-    # Test weekday offset
-    print(f"\n2. Weekday offset:")
-    print(f"   Thứ 2 từ hôm nay: +{get_weekday_offset('thứ 2')} ngày")
-    print(f"   Thứ 6 từ hôm nay: +{get_weekday_offset('thứ 6')} ngày")
-    
-    # Test relative day
-    print(f"\n3. Relative day offset:")
-    print(f"   Mai: +{get_relative_day_offset('mai')} ngày")
-    print(f"   Tuần sau: +{get_relative_day_offset('tuần sau')} ngày")
-    
-    # Test period to hour
-    print(f"\n4. Period to hour:")
-    print(f"   Sáng -> {parse_period_to_hour('sáng')}h")
-    print(f"   Chiều -> {parse_period_to_hour('chiều')}h")
-    
-    # Test reminder
-    start = datetime(2025, 12, 1, 10, 0, 0)
-    reminder = calculate_reminder_time(start, 15)
-    print(f"\n5. Reminder calculation:")
-    print(f"   Start: {format_datetime(start)}")
-    print(f"   Remind (15 min before): {format_datetime(reminder)}")

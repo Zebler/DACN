@@ -110,26 +110,3 @@ class JSONStorage:
         if not os.path.exists(self.file_path):
             with open(self.file_path, 'w', encoding='utf-8') as f:
                 json.dump([], f, ensure_ascii=False, indent=2)
-
-# Test
-if __name__ == "__main__":
-    storage = JSONStorage()
-    
-    # Test save
-    test_schedule = {
-        'event': 'Test meeting',
-        'start_time': '2025-12-01T10:00:00',
-        'location': 'Room 302',
-        'reminder_minutes': 15
-    }
-    
-    schedule_id = storage.save(test_schedule)
-    print(f"Saved with ID: {schedule_id}")
-    
-    # Test load
-    all_schedules = storage.load_all()
-    print(f"Total schedules: {len(all_schedules)}")
-    
-    # Test search
-    results = storage.search('test')
-    print(f"Search results: {len(results)}")

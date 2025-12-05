@@ -1,0 +1,414 @@
+{
+  "accuracy": 93.33333333333333,
+  "avg_confidence": 68.66666666666667,
+  "results": [
+    {
+      "id": 1,
+      "input": "Họp nhóm 10 giờ sáng mai ở phòng 302",
+      "success": true,
+      "confidence": 90,
+      "quality": "excellent",
+      "output": {
+        "event": "họp nhóm",
+        "start_time": "2025-12-06T10:00:00",
+        "end_time": null,
+        "location": "phòng 302",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 2,
+      "input": "Meeting khách hàng 14:30 chiều nay tại tầng 5",
+      "success": true,
+      "confidence": 100,
+      "quality": "excellent",
+      "output": {
+        "event": "meeting khách hàng",
+        "start_time": "2025-12-05T14:30:00",
+        "end_time": null,
+        "location": "tầng 5",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 3,
+      "input": "Gặp team 9h thứ 2 tuần sau",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "gặp team",
+        "start_time": "2025-12-15T09:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 4,
+      "input": "Training chiều mai phòng 101",
+      "success": true,
+      "confidence": 60,
+      "quality": "good",
+      "output": {
+        "event": "training chiều mai phòng 101",
+        "start_time": "2025-12-06T14:00:00",
+        "end_time": null,
+        "location": "phòng 101",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 5,
+      "input": "Họp sếp 15h tòa B",
+      "success": true,
+      "confidence": 70,
+      "quality": "good",
+      "output": {
+        "event": "họp sếp",
+        "start_time": "2025-12-06T15:00:00",
+        "end_time": null,
+        "location": "tòa b",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 6,
+      "input": "Seminar 9 giờ sáng thứ 6",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "seminar 9 giờ sáng thứ 6",
+        "start_time": "2025-12-12T09:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 7,
+      "input": "Call với client 10:30",
+      "success": true,
+      "confidence": 65,
+      "quality": "good",
+      "output": {
+        "event": "call với client",
+        "start_time": "2025-12-06T10:30:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 8,
+      "input": "Review code 2h chiều",
+      "success": true,
+      "confidence": 55,
+      "quality": "fair",
+      "output": {
+        "event": "review code 2 giờ chiều",
+        "start_time": "2025-12-06T14:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 9,
+      "input": "Họp định kỳ 9h thứ 2 hàng tuần",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "họp định kỳ 9 giờ thứ 2 hàng tuần",
+        "start_time": "2025-12-08T09:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 10,
+      "input": "Phỏng vấn ứng viên 3h chiều mai",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "phỏng vấn ứng viên 3 giờ chiều mai",
+        "start_time": "2025-12-06T15:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 11,
+      "input": "Họp 10h30 sáng 01/12/2025",
+      "success": false,
+      "confidence": 85,
+      "quality": "excellent",
+      "output": null
+    },
+    {
+      "id": 12,
+      "input": "Gặp đối tác tầng 3 tòa A 14h",
+      "success": true,
+      "confidence": 70,
+      "quality": "good",
+      "output": {
+        "event": "gặp đối tác",
+        "start_time": "2025-12-06T14:00:00",
+        "end_time": null,
+        "location": "tầng 3, tòa a",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 13,
+      "input": "Workshop sáng thứ 7",
+      "success": true,
+      "confidence": 45,
+      "quality": "fair",
+      "output": {
+        "event": "workshop sáng thứ 7",
+        "start_time": "2025-12-06T09:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 14,
+      "input": "Học tiếng Anh 7h tối",
+      "success": true,
+      "confidence": 55,
+      "quality": "fair",
+      "output": {
+        "event": "học tiếng anh",
+        "start_time": "2025-12-05T19:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 15,
+      "input": "Họp team chiều thứ 4",
+      "success": true,
+      "confidence": 45,
+      "quality": "fair",
+      "output": {
+        "event": "họp team",
+        "start_time": "2025-12-10T14:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 16,
+      "input": "Meeting 9:30 phòng họp lớn",
+      "success": true,
+      "confidence": 80,
+      "quality": "excellent",
+      "output": {
+        "event": "meeting 9:30 phòng họp lớn",
+        "start_time": "2025-12-06T09:30:00",
+        "end_time": null,
+        "location": "phòng h",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 17,
+      "input": "Thảo luận dự án 2h chiều mai",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "thảo luận dự án 2 giờ chiều mai",
+        "start_time": "2025-12-06T14:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 18,
+      "input": "Báo cáo sếp 4h chiều hôm nay",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "báo cáo sếp",
+        "start_time": "2025-12-05T16:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 19,
+      "input": "Training nhân viên mới 9h sáng",
+      "success": true,
+      "confidence": 55,
+      "quality": "fair",
+      "output": {
+        "event": "training nhân viên mới 9 giờ sáng",
+        "start_time": "2025-12-06T09:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 20,
+      "input": "Gặp khách VIP 10h tòa B tầng 10",
+      "success": true,
+      "confidence": 70,
+      "quality": "good",
+      "output": {
+        "event": "gặp khách vip 10 giờ tòa b tầng 1",
+        "start_time": "2025-12-06T10:00:00",
+        "end_time": null,
+        "location": "tầng 10, tòa b",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 21,
+      "input": "Họp quý 3h chiều thứ 6",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "họp quý 3 giờ chiều thứ 6",
+        "start_time": "2025-12-12T15:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 22,
+      "input": "Review performance 9h30 sáng mai",
+      "success": true,
+      "confidence": 85,
+      "quality": "excellent",
+      "output": {
+        "event": "review performance 9h30 sáng mai",
+        "start_time": "2025-12-06T09:30:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 23,
+      "input": "Call zoom 2pm",
+      "success": false,
+      "confidence": 15,
+      "quality": "poor",
+      "output": null
+    },
+    {
+      "id": 24,
+      "input": "Họp gấp 15h hôm nay",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "họp gấp 15 giờ hôm nay",
+        "start_time": "2025-12-05T15:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 25,
+      "input": "Seminar AI 9h thứ 7 tuần sau",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "seminar ai 9 giờ thứ 7 tuần sau",
+        "start_time": "2025-12-13T09:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 26,
+      "input": "Ăn trưa với đồng nghiệp 12h",
+      "success": true,
+      "confidence": 55,
+      "quality": "fair",
+      "output": {
+        "event": "ăn trưa với đồng nghiệp 12 giờ",
+        "start_time": "2025-12-06T12:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 27,
+      "input": "Đánh giá nhân viên 2h chiều thứ 5",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "đánh giá nhân viên 2 giờ chiều thứ 5",
+        "start_time": "2025-12-11T14:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 28,
+      "input": "Presentation 10h phòng 201",
+      "success": true,
+      "confidence": 70,
+      "quality": "good",
+      "output": {
+        "event": "presentation 10 giờ phòng 201",
+        "start_time": "2025-12-06T10:00:00",
+        "end_time": null,
+        "location": "phòng 201",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 29,
+      "input": "Họp ban giám đốc 8h30 sáng",
+      "success": true,
+      "confidence": 65,
+      "quality": "good",
+      "output": {
+        "event": "họp ban giám đốc",
+        "start_time": "2025-12-06T08:30:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    },
+    {
+      "id": 30,
+      "input": "Training Excel 3h chiều mai",
+      "success": true,
+      "confidence": 75,
+      "quality": "good",
+      "output": {
+        "event": "training excel 3 giờ chiều mai",
+        "start_time": "2025-12-06T15:00:00",
+        "end_time": null,
+        "location": "",
+        "reminder_minutes": 15
+      }
+    }
+  ]
+}

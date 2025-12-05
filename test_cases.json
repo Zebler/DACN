@@ -1,0 +1,263 @@
+[
+  {
+    "event": "họp nhóm",
+    "start_time": "2025-11-29T10:00:00",
+    "end_time": null,
+    "location": "phòng 302",
+    "reminder_minutes": 15,
+    "id": "1",
+    "created_at": "2025-11-28T14:00:00"
+  },
+  {
+    "event": "meeting khách hàng",
+    "start_time": "2025-11-29T14:30:00",
+    "end_time": null,
+    "location": "tầng 5",
+    "reminder_minutes": 15,
+    "id": "2",
+    "created_at": "2025-11-28T14:00:01"
+  },
+  {
+    "event": "gặp team",
+    "start_time": "2025-12-08T09:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "3",
+    "created_at": "2025-11-28T14:00:02"
+  },
+  {
+    "event": "training chiều mai phòng 101",
+    "start_time": "2025-11-29T14:00:00",
+    "end_time": null,
+    "location": "phòng 101",
+    "reminder_minutes": 15,
+    "id": "4",
+    "created_at": "2025-11-28T14:00:03"
+  },
+  {
+    "event": "họp sếp",
+    "start_time": "2025-11-28T15:00:00",
+    "end_time": null,
+    "location": "tòa b",
+    "reminder_minutes": 15,
+    "id": "5",
+    "created_at": "2025-11-28T14:00:04"
+  },
+  {
+    "event": "seminar 9 giờ sáng thứ 6",
+    "start_time": "2025-12-05T09:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "6",
+    "created_at": "2025-11-28T14:00:05"
+  },
+  {
+    "event": "call với client",
+    "start_time": "2025-11-29T10:30:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "7",
+    "created_at": "2025-11-28T14:00:06"
+  },
+  {
+    "event": "review code 2 giờ chiều",
+    "start_time": "2025-11-29T14:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "8",
+    "created_at": "2025-11-28T14:00:07"
+  },
+  {
+    "event": "họp định kỳ 9 giờ thứ 2 hàng tuần",
+    "start_time": "2025-12-01T09:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "9",
+    "created_at": "2025-11-28T14:00:08"
+  },
+  {
+    "event": "phỏng vấn ứng viên 3 giờ chiều mai",
+    "start_time": "2025-11-29T15:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "10",
+    "created_at": "2025-11-28T14:00:09"
+  },
+  {
+    "event": "họp 10h30 sáng 01/12/2025",
+    "start_time": "2025-12-01T10:30:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "11",
+    "created_at": "2025-11-28T14:00:10"
+  },
+  {
+    "event": "gặp đối tác",
+    "start_time": "2025-11-29T14:00:00",
+    "end_time": null,
+    "location": "tầng 3, tòa a",
+    "reminder_minutes": 15,
+    "id": "12",
+    "created_at": "2025-11-28T14:00:11"
+  },
+  {
+    "event": "workshop sáng thứ 7",
+    "start_time": "2025-11-29T09:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "13",
+    "created_at": "2025-11-28T14:00:12"
+  },
+  {
+    "event": "học tiếng anh",
+    "start_time": "2025-11-29T07:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "14",
+    "created_at": "2025-11-28T14:00:13"
+  },
+  {
+    "event": "họp team",
+    "start_time": "2025-12-03T14:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "15",
+    "created_at": "2025-11-28T14:00:14"
+  },
+  {
+    "event": "meeting 9:30 phòng họp lớn",
+    "start_time": "2025-11-29T09:30:00",
+    "end_time": null,
+    "location": "phòng h",
+    "reminder_minutes": 15,
+    "id": "16",
+    "created_at": "2025-11-28T14:00:15"
+  },
+  {
+    "event": "thảo luận dự án 2 giờ chiều mai",
+    "start_time": "2025-11-29T14:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "17",
+    "created_at": "2025-11-28T14:00:16"
+  },
+  {
+    "event": "báo cáo sếp",
+    "start_time": "2025-11-28T16:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "18",
+    "created_at": "2025-11-28T14:00:17"
+  },
+  {
+    "event": "training nhân viên mới 9 giờ sáng",
+    "start_time": "2025-11-29T09:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "19",
+    "created_at": "2025-11-28T14:00:18"
+  },
+  {
+    "event": "gặp khách vip 10 giờ tòa b tầng 1",
+    "start_time": "2025-11-29T10:00:00",
+    "end_time": null,
+    "location": "tầng 10, tòa b",
+    "reminder_minutes": 15,
+    "id": "20",
+    "created_at": "2025-11-28T14:00:19"
+  },
+  {
+    "event": "họp quý 3 giờ chiều thứ 6",
+    "start_time": "2025-12-05T15:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "21",
+    "created_at": "2025-11-28T14:00:20"
+  },
+  {
+    "event": "review performance 9h30 sáng mai",
+    "start_time": "2025-11-29T09:30:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "22",
+    "created_at": "2025-11-28T14:00:21"
+  },
+  {
+    "event": "họp gấp 15 giờ hôm nay",
+    "start_time": "2025-11-28T15:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "24",
+    "created_at": "2025-11-28T14:00:22"
+  },
+  {
+    "event": "seminar ai 9 giờ thứ 7 tuần sau",
+    "start_time": "2025-12-06T09:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "25",
+    "created_at": "2025-11-28T14:00:23"
+  },
+  {
+    "event": "ăn trưa với đồng nghiệp 12 giờ",
+    "start_time": "2025-11-29T12:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "26",
+    "created_at": "2025-11-28T14:00:24"
+  },
+  {
+    "event": "đánh giá nhân viên 2 giờ chiều thứ 5",
+    "start_time": "2025-12-04T14:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "27",
+    "created_at": "2025-11-28T14:00:25"
+  },
+  {
+    "event": "presentation 10 giờ phòng 201",
+    "start_time": "2025-11-29T10:00:00",
+    "end_time": null,
+    "location": "phòng 201",
+    "reminder_minutes": 15,
+    "id": "28",
+    "created_at": "2025-11-28T14:00:26"
+  },
+  {
+    "event": "họp ban giám đốc",
+    "start_time": "2025-11-29T08:30:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "29",
+    "created_at": "2025-11-28T14:00:27"
+  },
+  {
+    "event": "training excel 3 giờ chiều mai",
+    "start_time": "2025-11-29T15:00:00",
+    "end_time": null,
+    "location": "",
+    "reminder_minutes": 15,
+    "id": "30",
+    "created_at": "2025-11-28T14:00:28"
+  }
+]

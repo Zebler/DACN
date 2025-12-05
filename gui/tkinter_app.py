@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, scrolledtext
+from tkinter import ttk, messagebox, scrolledtext, filedialog
 import sys
 import os
 import json
@@ -83,6 +83,48 @@ class ScheduleAssistantGUI:
             font=("Arial", 10)
         ).pack(side=tk.LEFT, padx=(0, 10))
         
+        button_frame = tk.Frame(input_frame)
+        button_frame.pack(fill=tk.X)
+        
+        self.add_button = tk.Button(
+            # ... (nút Thêm sự kiện)
+        )
+        self.add_button.pack(side=tk.LEFT, padx=(0, 10))
+        
+        tk.Button(
+            # ... (nút Tìm kiếm)
+        ).pack(side=tk.LEFT, padx=(0, 10))
+        
+        # NÚT NHẬP (IMPORT)
+        tk.Button(
+            button_frame,
+            text="📥 Nhập (Import)", 
+            command=self.import_schedules, # <=== GỌI HÀM MỚI
+            bg="#f39c12",
+            fg="white",
+            font=("Arial", 10, "bold"),
+            padx=20,
+            pady=8,
+            cursor="hand2"
+        ).pack(side=tk.LEFT, padx=(0, 10))
+
+        # NÚT XUẤT (EXPORT)
+        tk.Button(
+            button_frame,
+            text="📤 Xuất (Export)", 
+            command=self.export_schedules, # <=== GỌI HÀM MỚI
+            bg="#9b59b6",
+            fg="white",
+            font=("Arial", 10, "bold"),
+            padx=20,
+            pady=8,
+            cursor="hand2"
+        ).pack(side=tk.LEFT, padx=(0, 10))
+        
+        tk.Button(
+            # ... (nút Xóa)
+        ).pack(side=tk.LEFT)
+
         # Dropdown cho reminder time
         self.reminder_var = tk.StringVar(value="15")
         reminder_options = ["5", "10", "15", "30", "60", "120"]
@@ -376,6 +418,51 @@ class ScheduleAssistantGUI:
             return dt.strftime("%d/%m/%Y %H:%M")
         except:
             return dt_str
+
+    def export_schedules(self):
+        # Mở hộp thoại Save As
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".json",
+            filetypes=[("JSON files", "*.json")],
+            initialfile="schedules_export.json",
+            title="Chọn nơi lưu file lịch trình"
+        )
+        
+        if file_path:
+            # 1. Load dữ liệu hiện tại
+            data_to_export = self.storage.load_all()
+            
+            # 2. Export dữ liệu
+            success, error = self.storage.export_to_file(data_to_export, file_path)
+            
+            if success:
+                self.status_bar.config(text=f"✅ Đã xuất {len(data_to_export)+1} lịch trình thành công.")
+                messagebox.showinfo("Thành công", f"Đã xuất dữ liệu thành công ra file:\n{file_path}")
+            else:
+                self.status_bar.config(text=f"❌ Lỗi xuất file: {error}")
+                messagebox.showerror("Lỗi", f"Không thể xuất file:\n{error}")
+
+    def import_schedules(self):
+        # Mở hộp thoại Open
+        file_path = filedialog.askopenfilename(
+            defaultextension=".json",
+            filetypes=[("JSON files", "*.json")],
+            title="Chọn file lịch trình để nhập"
+        )
+        
+        if file_path:
+            # 1. Import và ghi đè dữ liệu nội bộ
+            imported_data, error = self.storage.import_from_file(file_path)
+            
+            if imported_data is not None:
+                # 2. Cập nhật danh sách schedules trong GUI và load lại bảng
+                self.schedules = imported_data
+                self.load_schedules_to_table()
+                self.status_bar.config(text=f"✅ Đã nhập {len(imported_data)+1} lịch trình thành công.")
+                messagebox.showinfo("Thành công", f"Đã nhập {len(imported_data)+1} lịch trình thành công!")
+            else:
+                self.status_bar.config(text=f"❌ Lỗi nhập file: {error}")
+                messagebox.showerror("Lỗi", f"Không thể nhập file:\n{error}")
 
 
 def main():

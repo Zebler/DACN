@@ -10,7 +10,7 @@ class JSONStorage:
     def __init__(self, file_path='data/schedules.json'):
         self.file_path = file_path
         self.ensure_file_exists()
-    
+   
     def ensure_file_exists(self):
         """Đảm bảo file tồn tại"""
         os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
@@ -18,7 +18,59 @@ class JSONStorage:
         if not os.path.exists(self.file_path):
             with open(self.file_path, 'w', encoding='utf-8') as f:
                 json.dump([], f, ensure_ascii=False, indent=2)
-    
+
+    def _overwrite_internal(self, data):
+        """Ghi đè dữ liệu vào file schedules.json nội bộ."""
+        with open(self.file_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+
+    def export_to_file(self, data, external_path):
+        """
+        Xuất dữ liệu schedule ra một file JSON bất kỳ.
+        
+        Args:
+            data (list): Danh sách schedules để xuất.
+            external_path (str): Đường dẫn file đích.
+        
+        Returns:
+            tuple: (success: bool, error_message: str hoặc None)
+        """
+        try:
+            with open(external_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            return True, None
+        except Exception as e:
+            return False, f"Lỗi khi xuất file: {e}"
+
+    def import_from_file(self, external_path):
+        """
+        Nhập dữ liệu schedule từ một file JSON bất kỳ và ghi đè nội bộ.
+        
+        Args:
+            external_path (str): Đường dẫn file nguồn.
+            
+        Returns:
+            tuple: (imported_data: list hoặc None, error_message: str hoặc None)
+        """
+        try:
+            with open(external_path, 'r', encoding='utf-8') as f:
+                imported_data = json.load(f)
+            
+            # Kiểm tra định dạng cơ bản
+            if not isinstance(imported_data, list):
+                return None, "Định dạng file không hợp lệ (File không chứa danh sách lịch trình)"
+            
+            # Ghi đè dữ liệu vào file gốc (nội bộ)
+            self._overwrite_internal(imported_data)
+            
+            return imported_data, None
+        except FileNotFoundError:
+            return None, "File không tồn tại."
+        except json.JSONDecodeError:
+            return None, "Lỗi định dạng JSON: Nội dung file không hợp lệ."
+        except Exception as e:
+            return None, f"Lỗi khi nhập file: {e}"
+
     def load_all(self):
         """Load tất cả schedules"""
         try:

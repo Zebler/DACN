@@ -13,7 +13,7 @@ else:
 
 from src.core.scheduler import PersonalScheduleAssistant
 from src.storage.json_storage import JSONStorage
-
+from src.reminder.reminder_service import ReminderService
 
 class ScheduleAssistantGUI:
     """Giao diện chính của ứng dụng"""
@@ -131,7 +131,18 @@ class ScheduleAssistantGUI:
             pady=8,
             cursor="hand2"
         ).pack(side=tk.LEFT, padx=(0, 10))
-        
+        tk.Button(
+            button_frame,
+            text="🔄 Refresh",
+            command=self.refresh_schedules,
+            bg="#9b59b6",
+            fg="white",
+            font=("Arial", 10, "bold"),
+            padx=20,
+            pady=8,
+            cursor="hand2"
+        ).pack(side=tk.LEFT, padx=(0, 10))
+
         tk.Button(
             button_frame,
             text="🗑️ Xóa",
@@ -207,7 +218,15 @@ class ScheduleAssistantGUI:
         if result['success']:
             schedule = result['schedule']
             confidence = result.get('confidence', 0)
-            
+            try:
+                # Lấy giá trị reminder_minutes từ drop-down và ép kiểu sang int
+                selected_reminder_minutes = int(self.reminder_var.get())
+                
+                # Ghi đè giá trị reminder_minutes trong schedule object
+                schedule['reminder_minutes'] = selected_reminder_minutes
+                
+            except ValueError:
+                pass   
             # Save to storage
             schedule_id = self.storage.save(schedule)
             self.schedules = self.storage.load_all()
@@ -239,6 +258,11 @@ class ScheduleAssistantGUI:
                 f"Vui lòng thử lại với format khác."
             )
     
+    def display_notification(self, title, message):
+        """Hiển thị messagebox trên thread chính của Tkinter (Thread-Safe)."""
+        # self.root.after(0, ...) ĐẢM BẢO CUỘC GỌI DIỄN RA TRÊN MAIN THREAD
+        self.root.after(0, lambda: messagebox.showinfo(title, message))
+
     def delete_schedule(self):
         """Xóa sự kiện đã chọn"""
         selected = self.tree.selection()
@@ -332,6 +356,15 @@ class ScheduleAssistantGUI:
             schedule.get('location', ''),
             schedule.get('reminder_minutes', 15)
         ))
+    def refresh_schedules(self):
+        # Reload dữ liệu từ storage
+        self.schedules = self.storage.load_all()
+        
+        # Load lại vào bảng
+        self.load_schedules_to_table()
+        
+        # Update status bar
+        self.status_bar.config(text=f"🔄 Đã refresh - Tổng: {len(self.schedules)} lịch trình")
     
     def format_datetime(self, dt_str):
         """Format datetime string để hiển thị"""
@@ -349,8 +382,22 @@ def main():
     """Main function"""
     root = tk.Tk()
     app = ScheduleAssistantGUI(root)
+        
+    # === KHỞI TẠO VÀ BẮT ĐẦU REMINDER SERVICE ===
+    # Truyền tham chiếu đến hàm display_notification vào ReminderService
+    reminder_service = ReminderService(app.storage, app.display_notification) 
+    reminder_service.start()
+        
+        # === XỬ LÝ SỰ KIỆN ĐÓNG ỨNG DỤNG ===
+    def on_closing():
+        # Dừng thread nhắc nhở trước khi đóng ứng dụng
+        reminder_service.stop()
+        root.destroy()
+
+    root.protocol("WM_DELETE_WINDOW", on_closing)
+        
     root.mainloop()
 
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()

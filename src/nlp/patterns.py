@@ -12,13 +12,13 @@ TIME_PATTERNS = {
         r'(\d{1,2})g',  # 10g (viết tắt giờ)
     ],
     
-    # Buổi trong ngày: sáng, chiều, tối, trưa
+    # Buổi trong ngày: sáng, chiều, tối, trưa (MỞ RỘNG)
     'period': r'(sáng|buổi sáng|sáng sớm|chiều|buổi chiều|tối|buổi tối|tối muộn|trưa|buổi trưa|đêm|nửa đêm|khuya)',
     
-    # Ngày tương đối
-    'relative_day': r'(hôm nay|hôm qua|hqua|mai|ngày mai|ngày hôm nay|mốt|ngày mốt|ngày kia|tuần sau|tuần tới|tuần này|tháng sau|tháng tới|tháng này|năm sau|năm tới)',
+    # Ngày tương đối (MỞ RỘNG)
+    'relative_day': r'(hôm nay|hôm qua|hqua|mai|ngày mai|ngày hôm nay|mốt|ngày mốt|ngày kia|nay|tuần sau|tuần tới|tuần này|tháng sau|tháng tới|tháng này|năm sau|năm tới)',
     
-    # Thứ trong tuần
+    # Thứ trong tuần (MỞ RỘNG)
     'weekday': r'(thứ\s*(hai|ba|bốn|tư|năm|sáu|bảy|2|3|4|5|6|7)|chủ nhật|chủ nhật|cn|t2|t3|t4|t5|t6|t7)',
     
     # Ngày cụ thể: 01/11, 1/11/2025, 1-11, 1.11
@@ -28,7 +28,7 @@ TIME_PATTERNS = {
     'time_range': r'(từ\s*)?(\d{1,2}):?(\d{2})?\s*(đến|tới|-)\s*(\d{1,2}):?(\d{2})?',
 }
 
-# ============= LOCATION PATTERNS =============
+# ============= LOCATION PATTERNS (MỞ RỘNG) =============
 
 LOCATION_PATTERNS = {
     # Phòng: phòng 302, phòng A, phòng họp, P302
@@ -53,20 +53,20 @@ LOCATION_PATTERNS = {
     'venue': r'(khách sạn|hotel|cafe|cà phê|nhà hàng|quán|công ty|trường|trung tâm|center)\s+([^\s,]+(?:\s+[^\s,]+)*)',
 }
 
-# ============= EVENT PATTERNS =============
+# ============= EVENT PATTERNS (MỞ RỘNG) =============
 
 EVENT_PATTERNS = {
-    # Động từ sự kiện
+    # Động từ sự kiện (MỞ RỘNG)
     'action_verb': r'(họp|gặp|meeting|meet|thảo luận|làm việc|training|train|học|seminar|workshop|presentation|present|trình bày|báo cáo|review|đánh giá|phỏng vấn|interview|call|gọi điện|video call|zoom|conference|hội nghị|buổi|sự kiện|event)',
     
-    # Đối tượng
+    # Đối tượng (MỞ RỘNG)
     'object': r'(khách hàng|client|customer|team|nhóm|đội|group|đối tác|partner|sếp|boss|giám đốc|director|manager|quản lý|anh|chị|bạn|colleague|đồng nghiệp|phòng ban|department|công ty|company)',
     
     # Loại cuộc họp
     'meeting_type': r'(họp\s*(gấp|khẩn|quan trọng|định kỳ|tuần|tháng|quý|1-1|one on one|nội bộ|internal|external|bên ngoài))',
 }
 
-# ============= REMINDER PATTERNS =============
+# ============= REMINDER PATTERNS (MỞ RỘNG) =============
 
 REMINDER_PATTERNS = {
     # Nhắc trước: nhắc trước 15 phút, nhắc 30 phút trước, remind 1h before
@@ -79,7 +79,7 @@ REMINDER_PATTERNS = {
     'multiple_reminders': r'nhắc\s*(\d+)\s*lần',
 }
 
-# ============= HELPER DICTIONARIES =============
+# ============= HELPER DICTIONARIES (MỞ RỘNG) =============
 
 WEEKDAY_MAP = {
     'thứ hai': 0, 'thứ 2': 0, 't2': 0, 'thu 2': 0,

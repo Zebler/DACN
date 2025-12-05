@@ -54,27 +54,30 @@ def get_weekday_offset(weekday_name):
 def get_relative_day_offset(relative_term):
     """
     Tính offset từ hôm nay dựa trên từ tương đối
-    
-    Args:
-        relative_term (str): "hôm nay", "mai", "tuần sau"...
-        
-    Returns:
-        int: Số ngày cần cộng
     """
+    if not relative_term:  # Thêm check None
+        return 0
+    
     relative_map = {
         'hôm nay': 0,
+        'nay': 0,  # THÊM DÒNG NÀY
+        'ngày hôm nay': 0,
         'hôm qua': -1,
+        'hqua': -1,
         'mai': 1,
         'ngày mai': 1,
         'mốt': 2,
+        'ngày mốt': 2,
         'ngày kia': 2,
+        'tuần này': 0,
         'tuần sau': 7,
         'tuần tới': 7,
+        'tháng này': 0,
         'tháng sau': 30,
         'tháng tới': 30,
     }
     
-    return relative_map.get(relative_term.lower(), 0)
+    return relative_map.get(str(relative_term).lower(), 0)
 
 
 def parse_period_to_hour(period):

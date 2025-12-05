@@ -54,12 +54,9 @@ class TimeParser:
             result = target_date.replace(hour=hour, minute=minute or 0)
             
             # CHỈ tự động +1 ngày khi:
-            # - Thời gian đã qua
-            # - KHÔNG có date cụ thể
-            # - KHÔNG phải "hôm nay" (relative_day != 'hôm nay')
-            relative_day = time_components.get('relative_day', '').lower()
+            relative_day = time_components.get('relative_day', '').lower() if time_components.get('relative_day') else ''
             has_explicit_date = time_components.get('date') is not None
-            is_today = relative_day in ['hôm nay', 'ngày hôm nay']
+            is_today = relative_day in ['hôm nay', 'ngày hôm nay', 'nay']  # THÊM 'nay'
             
             if result < self.current_time and not has_explicit_date and not is_today:
                 result = result + timedelta(days=1)

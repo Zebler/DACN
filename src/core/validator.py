@@ -113,37 +113,54 @@ class ScheduleValidator:
     
     def merge_results(self, preprocessed, ner_result, rule_result, parsed_time):
         """
-        Hợp nhất kết quả từ tất cả các components
-        
-        Args:
-            preprocessed (dict): Kết quả từ Preprocessor
-            ner_result (dict): Kết quả từ NER Extractor
-            rule_result (dict): Kết quả từ Rule Extractor
-            parsed_time (str): Kết quả từ Time Parser (ISO format)
-            
-        Returns:
-            dict: Schedule object hoàn chỉnh
+        Hợp nhất kết quả từ tất cả các components (SAFE VERSION)
         """
-        # Extract event
-        event = rule_result.get('event', preprocessed.get('original', ''))
+        # Extract event - safe
+        event = rule_result.get('event', '') or preprocessed.get('original', '')
+        if not event:
+            event = ''
         
-        # Extract location
-        location_from_rule = rule_result.get('location_components', {}).get('full_location', '')
-        location_from_ner = ', '.join(ner_result.get('location', []))
+        # Extract location - safe
+        location_from_rule = ''
+        location_from_ner = ''
+        
+        try:
+            if rule_result and 'location_components' in rule_result:
+                loc_comp = rule_result['location_components']
+                if loc_comp and 'full_location' in loc_comp:
+                    location_from_rule = loc_comp['full_location'] or ''
+        except (TypeError, AttributeError):
+            location_from_rule = ''
+        
+        try:
+            if ner_result and 'location' in ner_result:
+                locations = ner_result['location']
+                if locations and isinstance(locations, list):
+                    location_from_ner = ', '.join(str(loc) for loc in locations if loc)
+        except (TypeError, AttributeError):
+            location_from_ner = ''
+        
         location = location_from_rule or location_from_ner or ''
         
         # Extract start_time
         start_time = parsed_time
         
-        # Extract reminder
-        reminder_minutes = rule_result.get('reminder_minutes', 15)
+        # Extract reminder - safe
+        reminder_minutes = 15  # Default
+        try:
+            if rule_result and 'reminder_minutes' in rule_result:
+                rm = rule_result['reminder_minutes']
+                if rm is not None:
+                    reminder_minutes = int(rm)
+        except (TypeError, ValueError):
+            reminder_minutes = 15
         
         # Create schedule object
         schedule = {
-            'event': event.strip(),
+            'event': str(event).strip() if event else '',
             'start_time': start_time,
-            'end_time': None,  # Có thể mở rộng sau
-            'location': location.strip(),
+            'end_time': None,
+            'location': str(location).strip() if location else '',
             'reminder_minutes': reminder_minutes
         }
         
@@ -199,3 +216,4 @@ class ScheduleValidator:
         is_valid, errors = self.validate_schedule(schedule)
         
         return schedule, is_valid, errors
+    

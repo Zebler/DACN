@@ -16,12 +16,13 @@ except Exception as e:
 class ReminderService:
     """Service để hiển thị pop-up nhắc nhở"""
     
-    def __init__(self, storage):
+    def __init__(self, storage, notification_callback=None):
         self.storage = storage
         self.running = False
         self.thread = None
         self.notified = set()  # Track đã nhắc nhở
-    
+        self.notification_callback = notification_callback
+
     def start(self):
         """Bắt đầu service"""
         if self.running:
@@ -94,6 +95,9 @@ class ReminderService:
         if schedule.get('location'):
             message += f"Địa điểm: {schedule['location']}"
         
+        notification_shown = False
+        
+        # Cố gắng dùng Plyer
         if HAS_PLYER:
             try:
                 notification.notify(
@@ -102,14 +106,31 @@ class ReminderService:
                     app_name="Schedule Assistant",
                     timeout=10
                 )
-                print(f"✅ Notification shown: {title}")
+                print(f"✅ Notification shown (Plyer): {title}")
+                notification_shown = True
             except Exception as e:
-                print(f"❌ Lỗi show notification: {e}")
-                # Fallback to console
-                self._console_notification(title, message)
-        else:
-            # Print to console if plyer not available
-            self._console_notification(title, message)
+                # Bắt lỗi plyer.platforms
+                print(f"❌ Lỗi show notification (Plyer): {e}")
+                
+        # === CƠ CHẾ DỰ PHÒNG THREAD-SAFE ===
+        if not notification_shown and self.notification_callback:
+            try:
+                # Gọi hàm an toàn trên thread chính của Tkinter
+                self.notification_callback(title, message)
+                print(f"✅ Notification shown (Tkinter Fallback): {title}")
+                notification_shown = True # Đã hiển thị bằng fallback
+
+            except Exception as e:
+                print(f"❌ Lỗi show notification (Tkinter Callback): {e}")
+                # Nếu ngay cả callback cũng lỗi, ta reset để dùng console
+                self.notification_callback = None
+        
+        # Fallback cuối cùng: In ra console (Dòng này đã hoạt động)
+        if not notification_shown:
+             self._console_notification(title, message)
+        
+        # Log xác nhận đã nhắc nhở (cần thiết cho logic notified.add)
+        print(f"🔔 Notified: {schedule['event']}")
     
     def _console_notification(self, title, message):
         """Hiển thị notification trên console"""

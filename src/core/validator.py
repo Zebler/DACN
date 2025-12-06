@@ -216,4 +216,3 @@ class ScheduleValidator:
         is_valid, errors = self.validate_schedule(schedule)
         
         return schedule, is_valid, errors
-    
